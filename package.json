@@ -1,6 +1,7 @@
 {
   "type": "module",
   "dependencies": {
+    "firebase": "^10.14.0",
     "googleapis": "^144.0.0"
   }
 }
