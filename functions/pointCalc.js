@@ -28,3 +28,50 @@ export function order(CSum) {
     });
     return ret;
 }
+
+export const houseNames = ['Albemarle', 'Ettl', 'Hobler', 'Lambert'];
+
+/*
+this collects all data Mr. Jones has for an event and output it as am event object
+More could be added to the Event class.
+
+Individual Event objects should be created for events.
+*/
+export class Event {
+    constructor(data) {
+        this.name = data[0];
+        this.score = data.slice(1, 5);
+        for (var i = 0; i < 4; i++)
+            this.score[i] = parseInt(this.score[i]);
+        if (data.length > 5)
+            this.desc = data[5];
+        else
+            this.desc = '';
+        this.ord = order(this.score);
+    }
+    getName() { return this.name; }
+    getScore() { return this.score; }
+    getOrder() { return this.ord; }
+    getDescription() { return this.desc; }
+    getWinner() {
+        if (this.ord[0] >= 1 && this.ord[0] <= 4)
+            return houseNames[this.ord[0] - 1];
+        throw 'Error: Invalid Order';
+    }
+}
+export function getEvent(Rdata) { return new Event(Rdata); }
+
+/*
+This is the House class for the house objects. Individual house objects should be created for each house, and displayed
+accordingly on the house details page.
+*/
+export class House {
+    constructor(_name, _points, _rk) {
+        this.name = _name;
+        this.points = _points;
+        this.rk = _rk;
+    }
+    output() {
+        return this.name + ' have ' + this.points + ' points, and it currently ranked ' + this.rk + '.';
+    }
+}
