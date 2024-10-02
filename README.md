@@ -6,7 +6,8 @@ Currently will not work what so ever, I've deleted the apiKey.
 ## setup
 
 - First check for node (run `node -v` to check if node exist)
-- Then install Google API dependency: `npm install googleapis`
+- Then install Google API dependency: `npm install googleapis`, and firebase dependencies: `npm install firebase`
+- 
 
 - There is a (hidden) secrets folder containing detailed information on OAuth2 and etc.
 
