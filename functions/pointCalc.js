@@ -29,7 +29,7 @@ export function order(CSum) {
     return ret;
 }
 
-export const houseNames = ['Albemarle', 'Ettl', 'Hobler', 'Lambert'];
+// -------------------------------------------------------------------------------------------------------- //
 
 /*
 this collects all data Mr. Jones has for an event and output it as am event object
@@ -49,6 +49,8 @@ export class Event {
             this.desc = '';
         this.ord = order(this.score);
     }
+    updateDescription(newDesc) { this.desc = newDesc; }
+
     getName() { return this.name; }
     getScore() { return this.score; }
     getOrder() { return this.ord; }
@@ -61,6 +63,9 @@ export class Event {
 }
 export function getEvent(Rdata) { return new Event(Rdata); }
 
+// -------------------------------------------------------------------------------------------------------- //
+
+export const houseNames = ['Albemarle', 'Ettl', 'Hobler', 'Lambert'];
 /*
 This is the House class for the house objects. Individual house objects should be created for each house, and displayed
 accordingly on the house details page.
@@ -74,4 +79,22 @@ export class House {
     output() {
         return this.name + ' have ' + this.points + ' points, and it currently ranked ' + this.rk + '.';
     }
+    addPoints(pointsEarned) { this.points += pointsEarned; }
+
+    // Access functions
+    getName() { return this.name; }
+    getPoints() { return this.points; }
+    getRank() { return this.rk; }
 }
+
+/*
+This function recalculates the order of the houses based on the points they have.
+*/
+export function redoRank(houses) {
+    var poi = [houses[0].getPoints(), houses[1].getPoints(), houses[2].getPoints(), houses[3].getPoints()];
+    var ord = order(poi);
+    for (var i = 0; i < 4; i++)
+        houses[ord[i] - 1].rk = i + 1;
+    return houses;
+}
+
